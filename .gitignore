@@ -1,5 +1,14 @@
 
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+
 Data/amazon_meta.json
 Data/amazon_reviews.json
-.DS_Store
 rebekah-idea-testing/reviews_raw.pkl
