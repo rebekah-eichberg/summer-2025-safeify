@@ -2,3 +2,4 @@
 Data/amazon_meta.json
 Data/amazon_reviews.json
 .DS_Store
+rebekah-idea-testing/reviews_raw.pkl
