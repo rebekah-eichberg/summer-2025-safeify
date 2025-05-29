@@ -12,4 +12,5 @@ __pycache__/
 Data/amazon_meta.json
 Data/amazon_reviews.json
 rebekah-idea-testing/reviews_raw.pkl
+rebekah-idea-testing/metadata_raw.pkl
 Data/amazon_recalls/
