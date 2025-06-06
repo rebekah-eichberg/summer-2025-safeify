@@ -14,12 +14,27 @@ Columns From Reviews Data:
 - summary - summary of the review
 
 Features For the Reviews Data:
-- overall rating: group by product and take the (avg, std, min, max, median, count) of the rating, proportion positive, proportion negative
-- verified: take mean of verified (imbalanced most reviewers are verified)
-- reviewTime
-- asin: unique only
+- overall rating: 
+    -- group by product and take the (avg, std, min, max, median, count) of the rating, 
+    -- proportion positive
+    -- proportion negative
+- verified: 
+    -- percent unverified (imbalanced most reviewers are verified)
+- unixReviewTime: 
+    -- lifespan of each product (date diff between first and last review)
+    -- longest gap between review dates
+    -- shortest gap between review dates
+    -- regression slope of rating over time (?) -- could be interesting to see the trend
+- asin: 
+    -- unique only
 - summary
-- reviewText: embed each of the reviews and take the cosine similarity between review and incident report description vector. then groupby
-asin and aggregate (mean, cluster, other) the vector 
-- reviewerID: number of unique reviewers per product
+    -- topic clustering
+- reviewText: 
+    -- embed each of the reviews and take the cosine similarity between review and incident report description vector. then groupby
+    asin and aggregate (mean, cluster, other) the vector, 
+    -- number of reviews per product
+    -- number of duplicated reviews
+- reviewerID: 
+    -- number of unique reviewers per product 
+    -- percent of users that repeated reviews for the product
 
