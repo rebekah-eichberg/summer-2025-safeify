@@ -59,9 +59,9 @@ def get_wordnet_pos(treebank_tag):
 def preprocess(text):
     stop_words = set(stopwords.words('english'))
     lemmatizer = WordNetLemmatizer()
-    tokens = word_tokenize(text.lower())  # lowercase and tokenize
-    tokens = [word for word in tokens if word.isalpha()]  # remove punctuation/numbers
-    tokens = [word for word in tokens if word not in stop_words]  # remove stopwords
+    tokens = word_tokenize(text.lower())  
+    tokens = [word for word in tokens if word.isalpha()]  
+    tokens = [word for word in tokens if word not in stop_words]  
     pos_tags = pos_tag(tokens)  # POS tagging
     lemmatized = [lemmatizer.lemmatize(word, get_wordnet_pos(pos)) for word, pos in pos_tags]
     return lemmatized
