@@ -14,3 +14,4 @@ Data/amazon_reviews.json
 rebekah-idea-testing/reviews_raw.pkl
 rebekah-idea-testing/metadata_raw.pkl
 Data/amazon_recalls/
+Data/amazon_merged.csv
