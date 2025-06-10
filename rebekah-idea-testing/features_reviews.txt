@@ -37,4 +37,6 @@ Features For the Reviews Data:
 - reviewerID: 
     -- number of unique reviewers per product 
     -- percent of users that repeated reviews for the product
+    -- reviews per day
+    -- bot activity
 
