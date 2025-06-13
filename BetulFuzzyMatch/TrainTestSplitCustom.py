@@ -64,18 +64,22 @@ Assign each component to a train/test or fold without causing leakage.
 """
 
 import pandas as pd
-amazon_df = pd.read_csv("Data/amazon_df_labels.csv")
+import os
+import ast
+import networkx as nx
+from sklearn.model_selection import train_test_split
+
+this_dir = os.path.dirname(__file__)
+data_path = os.path.join(this_dir, "..", "Data", "amazon_df_labels.csv")
+amazon_df = pd.read_csv(os.path.abspath(data_path))
+
+#amazon_df = pd.read_csv("Data/amazon_df_labels.csv")
 amazon_df.drop_duplicates(subset=['asin'], inplace=True)
 # indices column turned to str after loading csv, turn it back to list
-import ast
 
 amazon_df['incident_indices'] = amazon_df['incident_indices'].apply(
     lambda x: ast.literal_eval(x) if isinstance(x, str) else x
 )
-
-
-import networkx as nx
-from sklearn.model_selection import train_test_split
 
 def train_test_split_custom(amazon_df, test_size=0.2, random_state=42):
     """
@@ -93,6 +97,10 @@ def train_test_split_custom(amazon_df, test_size=0.2, random_state=42):
     for idx, row in label_1_df.iterrows():
         for incident in row['incident_indices']:
             G.add_edge(f"product_{idx}", f"incident_{incident}")
+    
+    # Get number of connected components
+    num_components = nx.number_connected_components(G)
+    print(f"Number of connected components: {num_components}")
 
     # Get connected components of the graph
     components = list(nx.connected_components(G))
