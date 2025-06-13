@@ -81,6 +81,9 @@ amazon_df['incident_indices'] = amazon_df['incident_indices'].apply(
     lambda x: ast.literal_eval(x) if isinstance(x, str) else x
 )
 
+# The random_state below produces a split with the training
+# and testing propertion of '1's fairly representative of the full dataset.
+# But if we modify the seed, we might want to use the straify= parameter.
 def train_test_split_custom(amazon_df, test_size=0.2, random_state=42):
     """
     Splits the Amazon data into train/test sets:
