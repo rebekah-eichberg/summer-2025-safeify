@@ -18,3 +18,4 @@ Data/amazon_merged.csv
 feature_extractions/reviews_raw.pkl
 Data/agg_summary_embeddings.pkl
 Data/meta_df.parquet
+Data/metadata_raw.pkl
