@@ -19,3 +19,5 @@ feature_extractions/reviews_raw.pkl
 Data/agg_summary_embeddings.pkl
 Data/meta_df.parquet
 Data/metadata_raw.pkl
+Data/test_v1.parquet
+Data/train_v1.parquet
