@@ -4,6 +4,7 @@ import requests
 from tqdm import tqdm
 import gzip
 import shutil
+import hashlib
 
 def download_if_not_exists(url, filename, timeout=10):
     """
@@ -106,3 +107,41 @@ def extract_gz_file(gz_path, output_path=None, delete_original=False):
     except OSError as e:
         print(f"Extraction failed: {e}")
         raise
+
+
+
+def calculate_md5(filename):
+    """Calculates the MD5 checksum of a file."""
+    hash_md5 = hashlib.md5()
+    try:
+        with open(filename, "rb") as f:
+            for chunk in iter(lambda: f.read(4096), b""):
+                hash_md5.update(chunk)
+        return hash_md5.hexdigest()
+    except FileNotFoundError:
+        return None
+
+def verify_md5_file(md5_file_path):
+    """Verifies files against MD5 checksums in a file."""
+    try:
+        with open(md5_file_path, 'r') as f:
+            for line in f:
+                line = line.strip()
+                if not line:
+                    continue
+                parts = line.split("  ", 1)
+                if len(parts) != 2:
+                    print(f"Invalid line format: {line}")
+                    continue
+                expected_md5, filename = parts
+                calculated_md5 = calculate_md5(filename)
+
+                if calculated_md5 is None:
+                  print(f"File not found: {filename}")
+                  continue
+                if calculated_md5 == expected_md5:
+                    print(f"{filename}: OK")
+                else:
+                    print(f"FAILED: {filename} (Expected: {expected_md5}, Calculated: {calculated_md5})")
+    except FileNotFoundError:
+        print(f"Error: MD5 file not found: {md5_file_path}")
