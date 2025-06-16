@@ -23,3 +23,7 @@ Data/test_v1.parquet
 Data/train_v1.parquet
 Data/train_final_v1.parquet
 Data/validation_v1.parquet
+Data/reviewtext_features_df.pkl
+Data/test_v2.parquet
+Data/train_final_v2.parquet
+Data/validation_v2.parquet
