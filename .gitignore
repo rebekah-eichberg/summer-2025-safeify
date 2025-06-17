@@ -36,3 +36,7 @@ validation_v1.parquet
 validation_v2.parquet
 Data/amazon_top6_unique.csv
 
+Data/test_v3.parquet
+Data/train_final_v3.parquet
+Data/validationA_v3.parquet
+Data/validationB_v3.parquet
