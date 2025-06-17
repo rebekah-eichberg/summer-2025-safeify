@@ -27,3 +27,12 @@ Data/reviewtext_features_df.pkl
 Data/test_v2.parquet
 Data/train_final_v2.parquet
 Data/validation_v2.parquet
+test_v1.parquet
+test_v2.parquet
+train_final_v1.parquet
+train_final_v2.parquet
+train_v1.parquet
+validation_v1.parquet
+validation_v2.parquet
+Data/amazon_top6_unique.csv
+
