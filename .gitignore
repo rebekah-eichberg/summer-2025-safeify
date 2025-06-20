@@ -40,3 +40,11 @@ Data/test_v3.parquet
 Data/train_final_v3.parquet
 Data/validationA_v3.parquet
 Data/validationB_v3.parquet
+
+test_v3.parquet
+train_final_v3.parquet
+validationA_v3.parquet
+validationB_v3.parquet
+
+rebekah-idea-testing/X_train_final_df.pkl
+rebekah-idea-testing/X_val_final_df.pkl
