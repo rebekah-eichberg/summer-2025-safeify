@@ -13,7 +13,7 @@ This directory contains notebooks and scripts for cleaning Amazon product metada
 - **EmbeddingCalculationReviewText.ipynb**  
   Computes sentence embeddings for review texts using a pre-trained transformer model and saves them for semantic analysis.
 
-- **SimilarityScore.ipynb**  
+- **SimilarityScore_ReviewEmbeddingAggregation.ipynb**  
   Calculates semantic similarity scores between reviews and reference complaint/shipping sentences, incorporates sentiment analysis, and aggregates features at the product level.
 
 - **CleanReviewsData.ipynb**  
