@@ -41,7 +41,7 @@ This directory contains notebooks and scripts for cleaning Amazon product metada
    Run `EmbeddingCalculationReviewText.ipynb` to generate review text embeddings.
 
 4. **Calculate Similarity and Sentiment Features:**  
-   Run `SimilarityScore.ipynb` to compute semantic similarity and sentiment features for reviews.
+   Run `SimilarityScore_ReviewEmbeddingAggregation.ipynb` to compute semantic similarity and sentiment features for reviews.
 
 5. **Clean Review Data:**  
    Run `CleanReviewsData.ipynb` to drop products with low-quality reviews.
@@ -104,7 +104,7 @@ The review text for each review is cleaned. The model `all-MiniLM-L6-v2` is appl
 
 ### TODO: Reference vectors from complaints data
 
-### Similarity and Sentiment Scoring (`SimilarityScore.ipynb`)
+### Similarity and Sentiment Scoring (`SimilarityScore_ReviewEmbeddingAggregation.ipynb`)
 We compute the cosine similarity scores of the review text with the collection of text embeddings of the reference complaint sentences. 
 
 To reduce false positives, we do the following.  We first use a sentiment classifier (`distilbert-base-uncased-finetuned-sst-2-english`) to compute sentiment scores for each review. Then we filter out reviews with high similarity to complaint sentences, but positive sentiment, in order to reduce false positives. We also compute similarity scores with a collection of negative sentences relating to shipping related issues.
@@ -121,7 +121,7 @@ We then aggregate mean and maximum similarity and sentiment scores per ASIN, and
   - The matches (from `../matches/MatchWithPretrainedModelandLLM.ipynb`)
   - The cleaned metadata (from `meta_cleaning.ipynb`)
   - The review metadata non-embedding features (from `reviews_features.ipynb`)
-  - The aggregated review embeddings and their similarity score (from `SimilarityScore.ipynb`)
+  - The aggregated review embeddings and their similarity score (from `SimilarityScore_ReviewEmbeddingAggregation.ipynb`)
   - The aggregated summary embeddings.
   - The dropped products from review cleaning (from `CleanReviewsData.ipynb`)
 
