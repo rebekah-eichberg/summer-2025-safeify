@@ -11,6 +11,9 @@ This folder contains notebooks and scripts used to match for matching Amazon pro
 - **duckduckgo_asins.ipynb**  
   Notebook for extracting ASINs from incident reports using DuckDuckGo search and annotating Amazon metadata with matches.
 
+- **matching_recalls.ipynb**
+  Notebook for finding matches between the CPSC recalls and products in the Amazon metadata.
+
 - **MatchWithPretrainedModelandLLM.ipynb**  
   Notebook for robust product matching using fuzzy string matching, transformer-based semantic similarity, and LLM-based verification and refinement.
 
@@ -23,7 +26,10 @@ This folder contains notebooks and scripts used to match for matching Amazon pro
 1. **Web Search Matching:**  
    Use `duckduckgo_asins.ipynb` to find Amazon ASINs for incident reports via DuckDuckGo search.
 
-2. **Fuzzy and Semantic Matching, and export results:**  
+2. **Matching with recalls:**
+  Use `matching_recalls.ipynb` to match products in the amazon product metadata with items in CPSC recall database, saving the output to `../Data/amazon_meta_with_recall_matches.csv`
+
+3. **Fuzzy and Semantic Matching, and export results:**  
    Use `MatchWithPretrainedModelandLLM.ipynb` to:
    - Compute fuzzy string matches (brand, title, description).
    - Compute semantic similarity matches using a pre-trained transformer model.
@@ -72,12 +78,18 @@ We apply the following methods to do this:
     For 64 incident reports, the report directly mentioned an ASIN in the text of the report. We extract those ASINs, and label the corresponding entries of the metadata dataset with a `1`.
 2.  **`duckduckgo.com` search** (`duckduckgo_asins.ipynb`) 
     
-    We defined a function which does the following for each incident report:
+    We define a function which does the following for each incident report:
     -   Concate the `brand`, `model_name_or_number`, and `product_description` to obtain a `query`.
     -   Search each `query` on `duckduckgo.com`, filtering to only results on `amazon.com`.
     -   For each result, we extract an asin and mark the corresponding entry of the amazon_metadata dataset with a `1`.
 
-3. **Similarity scores via text embeddings** (`MatchWithPretrainedModelandLLM.ipynb`)
+3. **Product recall matchings**
+We match Amazon product listings to official product recall records by comparing product titles. The output is saved to `../Data/amazon_meta_with_recall_matches.csv`.
+ - We first clean the title field in the recall database by removing generic/banned words (e.g., "recall", "hazard", "product", etc.)
+ - We then apply `RapidFuzz` (a fuzzy matching module) to find matches between the recall titles and the `title` field in the amazon.com metadata.
+
+
+4. **Similarity scores via text embeddings** (`MatchWithPretrainedModelandLLM.ipynb`)
 
     We use a pretrained model to find similarity scores between amazon products and incident reports/recalls.
     -   For each amazon product entry, we concatenate the `brand`, `title`, and `description` to obtain an `amazon_text` field.
@@ -86,14 +98,14 @@ We apply the following methods to do this:
     A positive match is obtained when the cosine similarity score is above a threshold.
     
 
-4. **Fuzzy Matching** (`MatchWithPretrainedModelandLLM.ipynb`)
-We use RapidFuzz (a fuzzy matching module) to compute similarity between:
+5. **Fuzzy Matching** (`MatchWithPretrainedModelandLLM.ipynb`)
+We use `RapidFuzz` (a fuzzy matching module) to compute similarity between:
         - The `brand` fields of the amazon items and incident reports.
         - The `Product Description` field of an incident report, and the `title` of each amazon product.
 A positive match is obtained if these matches are above certain thresholds.
 
-5. **Combining and verifying**
-We combine all matches obtained from the above 4 methods, and use a LLM (Mixtral) to verify the matches.
+6. **Combining and verifying**
+We combine all matches obtained from the above 5 methods, and use a LLM (Mixtral) to verify the matches.
 The output is saved to a the file ``../Data/amazon_df_labels.csv``, whose columns are:
 - `asin`: The asin of each product in the amazon.com dataset.
 - `match`: Is a `1` if this item is matched to an incident report/recall, and a `0` otherwise.
