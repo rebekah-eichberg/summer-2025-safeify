@@ -52,3 +52,4 @@ rebekah-idea-testing/X_val_final_df.pkl
 Data/reviews_raw.pkl
 Data/reviews_raw.pkl
 Data/reviews_raw.pkl
+Data/metadata_cleaned.parquet
