@@ -14,12 +14,12 @@ Product Safety Commission (CPSC) database, using both recall and complaint repor
 
 ### Data
 
-### [Matching Amazon.com products with incident reports](matching/README.md)
+### [Matching Amazon.com products with incident reports](matching/)
 The ``matching`` folder contains notebooks and scripts used to match for matching Amazon product metadata to incident and recall reports for toys and children’s products. The matching process combines fuzzy string matching, semantic similarity using transformer models, web search enrichment, and large language model (LLM) verification.
-More information is contained in the [readme file](matching/README.md) of this folder.
+More information is contained in the [readme file](matching/) of this folder.
 
-### [Cleaning and feature engineering](cleaning_and_feature_engineering/README.md)
-The `cleaning_and_feature_engineering` directory contains notebooks and scripts for cleaning Amazon product metadata and review data, engineering features, and builds the main dataset for modeling. Please see the [readme file](cleaning_and_feature_engineering/README.md) for more information.
+### [Cleaning and feature engineering](cleaning_and_feature_engineering/)
+The `cleaning_and_feature_engineering` directory contains notebooks and scripts for cleaning Amazon product metadata and review data, engineering features, and builds the main dataset for modeling. Please see the [readme file](cleaning_and_feature_engineering/) for more information.
 
 
 ## Requirements
