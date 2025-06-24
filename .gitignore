@@ -48,3 +48,7 @@ validationB_v3.parquet
 
 rebekah-idea-testing/X_train_final_df.pkl
 rebekah-idea-testing/X_val_final_df.pkl
+.vscode/settings.json
+Data/reviews_raw.pkl
+Data/reviews_raw.pkl
+Data/reviews_raw.pkl
