@@ -11,7 +11,7 @@ This folder contains all Jupyter notebooks and scripts related to machine learni
   Notebook for testing trained models on validation, calibration, and test sets. Includes performance metrics, error analysis, and final model selection.
 
 - **prob_cal.ipynb**  
-  Notebook for probability calibration of model outputs. Contains code for calibrating predicted probabilities, plotting reliability curves, and analyzing probability distributions.
+  Notebook for probability calibration of model outputs. Contains code for calibrating predicted probabilities, plotting reliability curves, and analyzing probability distributions. It also contains the code for anomaly detections with distribution plots.
 
 - **shap_feature_selection.ipynb**  
   Notebook for feature importance analysis and selection using SHAP (SHapley Additive exPlanations). Helps identify the most and least important features for model performance.
