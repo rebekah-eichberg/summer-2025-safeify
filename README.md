@@ -8,6 +8,24 @@ This is the repository for our Erdos Institute Summer 2025 Data Science Bootcamp
 
 The goal of Safeify is to predict bad, hazardous, and low-quality products using Amazon product data and U.S. Consumer Product Safety Commission (CPSC) reports. Our main challenge was to develop a robust labeling strategy for identifying such products. 
 
+## Stakeholders and Key Performance Indicators (KPIs)
+Safeify is a model that is appealing to the following parties: 
+- U.S. Consumer Product Safety Commission (CPSC) to incorporate recall and incident reports in real time with e-commerce platforms to bring information to consumers at a quicker rate
+- Small online retailers on large e-commerce platforms such as Amazon trying to understand true performance/likeability of their product
+- E-commerce platforms looking to lean out their inventory by reducing sales of low quality and problematic products
+
+The KPIs are:
+- Predictive: Correctly identifying products that are low quality and unsafe; ability to investigate flagged items
+Safety Impact: Reduction in time to flag safety issues 
+- Consumer Satisfaction: Decrease in negative reviews or returns or movement towards more credible reviews; Consumer trust and engagement with the Safeify model
+- Retailer: Reduction in inventory holding of low quality and hazardous, decrease in customer support tickets related to flagged products
+
+## Data Sources:
+- Amazon Reviews and Metadata for product information such as reviews and rating (https://nijianmo.github.io/amazon/)
+- CPSC Recalls and Incident Reports to create labels for products that appear on Amazon that are unsafe and low quality (https://www.saferproducts.gov/PublicSearch)
+
+## Methods, Modelling and Results:
+
 ## Repository Structure
 
 - **[modeling/](modeling/)**  
