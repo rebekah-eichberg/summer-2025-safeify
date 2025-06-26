@@ -30,4 +30,4 @@ if not os.path.exists("../Data/reviews_raw.pkl"):
     print ("Pickling amazon reviews.")
     reviews_df_raw = pd.read_json("../Data/amazon_reviews.json",lines=True)
     reviews_df_raw.to_pickle('../Data/reviews_raw.pkl')
-    del metadata_df_raw
+    del reviews_df_raw
