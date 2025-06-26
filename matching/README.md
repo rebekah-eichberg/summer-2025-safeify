@@ -14,10 +14,6 @@ This folder contains notebooks and scripts used to match for matching Amazon pro
 - **MatchWithPretrainedModelandLLM.ipynb**  
   Notebook for robust product matching using fuzzy string matching, transformer-based semantic similarity, and LLM-based verification and refinement.
 
-- **scrape_duckduckgo.py**  
-  Script for searching DuckDuckGo and extracting Amazon product links and ASINs.
-
-
 ## Workflow
 
 1. **Web Search Matching:**  

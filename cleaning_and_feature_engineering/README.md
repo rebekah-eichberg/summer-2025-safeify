@@ -4,6 +4,9 @@ This directory contains notebooks and scripts for cleaning Amazon product metada
 
 ## Contents
 
+- **reviews-eda.ipynb**
+  This Jupyter Notebook performs exploratory data analysis (EDA) on a dataset of product reviews, with a focus on identifying suspicious activity (potential bots), understanding review patterns, and extracting safety-related information.
+
 - **meta_cleaning.ipynb**  
   Cleans and imputes missing values in Amazon product metadata, including product ranks and categories. Outputs a cleaned metadata file.
 
@@ -22,9 +25,6 @@ This directory contains notebooks and scripts for cleaning Amazon product metada
 - **combining_and_splitting.ipynb**  
   Merges all cleaned and engineered features, balances the dataset, and performs stratified group splits for training, validation, and testing, ensuring label and group integrity.
 
-- **custom_ttsplit.py**  
-  Python module for stratified group splitting.
-
 - **Missing file to generate  `agg_summary_embeddings.pkl`** 
 
 - **Missing files to generate `sentences_complaint.pkl`**
@@ -34,19 +34,22 @@ This directory contains notebooks and scripts for cleaning Amazon product metada
 1. **Clean and Impute Metadata:**  
    Run `meta_cleaning.ipynb` to produce cleaned product metadata.
 
-2. **Engineer Review Features:**  
+2. **Review EDA**
+    Run `reviews-eda.ipynb` for preliminary EDA on the review features.
+
+3. **Engineer Review Features:**  
    Run `reviews_features.ipynb` to generate product-level review features.
 
-3. **Compute Review Embeddings:**  
+4. **Compute Review Embeddings:**  
    Run `EmbeddingCalculationReviewText.ipynb` to generate review text embeddings.
 
-4. **Calculate Similarity and Sentiment Features:**  
+5. **Calculate Similarity and Sentiment Features:**  
    Run `SimilarityScore_ReviewEmbeddingAggregation.ipynb` to compute semantic similarity and sentiment features for reviews.
 
-5. **Clean Review Data:**  
+6. **Clean Review Data:**  
    Run `CleanReviewsData.ipynb` to drop products with low-quality reviews.
 
-6. **Combine and Split Data:**  
+7. **Combine and Split Data:**  
    Run `combining_and_splitting.ipynb` to merge all features and create balanced, stratified train/validation/test splits.
 
 **Note:**  
@@ -119,7 +122,7 @@ We then aggregate mean and maximum similarity and sentiment scores per ASIN, and
 ### Combining and splitting
   We combine the following data files into a single DataFrame:
   - The matches (from `../matches/MatchWithPretrainedModelandLLM.ipynb`)
-  - The cleaned metadata (from `meta_cleaning.ipynb`)
+  - The cleaned metadata (from `../Data/meta_cleaning.ipynb`)
   - The review metadata non-embedding features (from `reviews_features.ipynb`)
   - The aggregated review embeddings and their similarity score (from `SimilarityScore_ReviewEmbeddingAggregation.ipynb`)
   - The aggregated summary embeddings.
