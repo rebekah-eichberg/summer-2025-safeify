@@ -1,7 +1,7 @@
 # Safeify
 ### Team members: [Emelie Arvidsson](https://github.com/EmmiArwid), [Rebekah Eichberg](https://github.com/rebekah-eichberg), [Alex Margolis](https://github.com/almargo), [Betul Senay Aras](https://github.com/betsenara) 
 
-This is the repository our Erdos Institute Summer 2025 Data Science Bootcamp Project.
+This is the repository for our Erdos Institute Summer 2025 Data Science Bootcamp Project.
 
 
 ## Project Overview
