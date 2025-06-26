@@ -53,3 +53,4 @@ Data/reviews_raw.pkl
 Data/reviews_raw.pkl
 Data/reviews_raw.pkl
 Data/metadata_cleaned.parquet
+Data/CV_val_split.parquet
