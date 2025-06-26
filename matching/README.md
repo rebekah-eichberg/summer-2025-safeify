@@ -5,9 +5,6 @@ This folder contains notebooks and scripts used to match for matching Amazon pro
 
 ## Contents
 
-- **asin_with_search_results.csv**  
-  Incident reports with DuckDuckGo-based Amazon ASIN search results.
-
 - **duckduckgo_asins.ipynb**  
   Notebook for extracting ASINs from incident reports using DuckDuckGo search and annotating Amazon metadata with matches.
 

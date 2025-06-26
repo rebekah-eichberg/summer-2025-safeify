@@ -1,0 +1,42 @@
+Columns From Reviews Data:
+- overall - rating of the product
+- vote - helpful votes of the review (so people that gave a thumbs up) *DROP* 
+- verified - a boolean of whether the data was verified or not
+- reviewTime - time of the review (raw)
+- reviewerID - ID of the reviewer
+- asin - ID of the product
+- reviewerName - name of the reviewer
+- reviewText - text of the review
+- summary - review title
+- unixReviewTime - time of the review (unix time)
+- image - images that users post after they have received the product *DROP* 
+- style - a disctionary of the product metadata, e.g., "Format" is "Hardcover" *DROP* 
+- summary - summary of the review
+
+Features For the Reviews Data:
+- overall rating: 
+    -- group by product and take the (avg, std, min, max, median, count) of the rating, 
+    -- proportion positive
+    -- proportion negative
+- verified: 
+    -- percent unverified (imbalanced most reviewers are verified)
+- unixReviewTime: 
+    -- lifespan of each product (date diff between first and last review)
+    -- longest gap between review dates
+    -- shortest gap between review dates
+    -- regression slope of rating over time (?) -- could be interesting to see the trend
+- asin: 
+    -- unique only
+- summary
+    -- topic clustering
+- reviewText: 
+    -- embed each of the reviews and take the cosine similarity between review and incident report description vector. then groupby
+    asin and aggregate (mean, cluster, other) the vector, 
+    -- number of reviews per product
+    -- number of duplicated reviews
+- reviewerID: 
+    -- number of unique reviewers per product 
+    -- percent of users that repeated reviews for the product
+    -- reviews per day
+    -- bot activity
+
