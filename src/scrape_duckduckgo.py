@@ -41,7 +41,7 @@ def duckduckgo_search(query, max_results=10, headless=False):
     options.add_argument("--disable-blink-features=AutomationControlled")
     options.add_argument("--remote-debugging-port=9222")
 
-    driver = uc.Chrome(options=options, version_main=136)
+    driver = uc.Chrome(options=options)
 
     try:
         driver.get("https://duckduckgo.com/")
