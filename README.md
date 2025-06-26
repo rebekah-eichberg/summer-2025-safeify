@@ -3,28 +3,37 @@
 
 This is the repository our Erdos Institute Summer 2025 Data Science Bootcamp Project.
 
-## Overview of the project
-The goal of the project is to predict bad, hazardous, and low-quality products, leaving the task of identifying best-sellers to future work. A main part of the
-project has been to identify a way to label products as bad, low-quality, or hazardous. We addressed this challenge by leveraging the U.S. Consumer
-Product Safety Commission (CPSC) database, using both recall and complaint reports to identify harmful products.
 
-## Structure of the repository
+## Project Overview
 
-### Modelling
+The goal of Safeify is to predict bad, hazardous, and low-quality products using Amazon product data and U.S. Consumer Product Safety Commission (CPSC) reports. Our main challenge was to develop a robust labeling strategy for identifying such products. 
 
-### Data
+## Repository Structure
 
-### [Matching Amazon.com products with incident reports](matching/)
-The ``matching`` folder contains notebooks and scripts used to match for matching Amazon product metadata to incident and recall reports for toys and children’s products. The matching process combines fuzzy string matching, semantic similarity using transformer models, web search enrichment, and large language model (LLM) verification.
-More information is contained in the [readme file](matching/) of this folder.
+- **[modeling/](modeling/)**  
+  Contains Jupyter notebooks and scripts for machine learning model development, feature selection, training, evaluation, probability calibration, and error analysis. See the [modeling README](modeling/ReadMe.md) for details.
 
-### [Cleaning and feature engineering](cleaning_and_feature_engineering/)
-The `cleaning_and_feature_engineering` directory contains notebooks and scripts for cleaning Amazon product metadata and review data, engineering features, and builds the main dataset for modeling. Please see the [readme file](cleaning_and_feature_engineering/) for more information.
+- **[Data/](Data/)**  
+  Contains all raw, intermediate, and processed datasets, as well as scripts for downloading and verifying data. See the [Data README](Data/README.md) for a full list and description of files.
 
+- **[matching/](matching/)**  
+  Notebooks and scripts for matching Amazon product metadata to CPSC incident and recall reports for toys and children’s products. The matching process uses fuzzy string matching, transformer-based semantic similarity, web searching, and LLM verification. More information is in the [matching README](matching/README.md).
 
-## Requirements
-Running 
-```
-pip install -r requirements.txt
-```
-will install all the required python modules.
+- **[cleaning_and_feature_engineering/](cleaning_and_feature_engineering/)**  
+  Notebooks and scripts for cleaning Amazon product metadata and review data, engineering features, and building the main dataset for modeling. See the [cleaning_and_feature_engineering README](cleaning_and_feature_engineering/README.md) for more information.
+
+- **[src/](src/)**  
+  Python scripts for data downloading, preprocessing, feature engineering, splitting, and utility functions.
+
+## Getting Started
+
+1. **Install requirements:**  
+   ```
+   pip install -r requirements.txt
+   ```
+
+2. **Download data:**  
+   Use the scripts in the `src/` folder to download raw data, embeddings, and processed splits as described in the [Data README](Data/README.md).
+
+3. **Explore and run notebooks:**  
+   See the individual folder READMEs for recommended notebook order and workflow.
