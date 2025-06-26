@@ -57,3 +57,4 @@ Data/CV_val_split.parquet
 
 amazon_meta.json
 amazon_reviews.json
+Data/df_asin.csv
