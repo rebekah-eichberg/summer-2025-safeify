@@ -1,6 +1,7 @@
 beautifulsoup4
 fastparquet
 imblearn
+iprogress
 ipykernel
 joblib
 matplotlib
@@ -26,3 +27,4 @@ tqdm
 transformers
 undetected_chromedriver
 wordcloud
+xgboost

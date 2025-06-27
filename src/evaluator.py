@@ -10,6 +10,7 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 import numpy as np
 import pandas as pd
+from joblib import Parallel,delayed
 
 
 from math import ceil
@@ -160,6 +161,7 @@ def evaluate_param_list(results_df, estimator, X_train, y_train, X_val, y_val, t
 
     return pd.DataFrame(results).sort_values("recall_macro_val", ascending=False)
 
-
+def average_precision_score_1(y_true, y_score, **kwargs):
+    return average_precision_score(y_true,y_score)
 
 

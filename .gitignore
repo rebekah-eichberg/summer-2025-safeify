@@ -63,3 +63,5 @@ Data/final_reviews.parquet
 amazon_meta.json
 amazon_reviews.json
 
+Data/filtered_word_lists.pkl
+Data/sentences_complaint.pkl
