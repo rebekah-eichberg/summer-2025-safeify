@@ -8,7 +8,7 @@ This folder contains all Jupyter notebooks and scripts related to machine learni
   Main notebook for training machine learning models, performing hyperparameter tuning, and evaluating model performance using cross-validation. Includes feature selection, model comparison, and metric reporting.
 
 - **MLModelTesting.ipynb**  
-  Notebook for testing trained models on the test set. Includes performance metrics, error analysis, and final model selection.
+  Notebook for testing trained models on the test set. Includes performance metrics, error analysis, and final model selection. The results come from models that were **not** calibrated.
 
 - **prob_cal.ipynb**  
   Notebook for probability calibration of model outputs. Contains code for calibrating predicted probabilities, plotting reliability curves, and analyzing probability distributions. It also contains the code for anomaly detections with distribution plots.
