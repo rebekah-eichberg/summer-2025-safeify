@@ -24,14 +24,92 @@ Safety Impact: Reduction in time to flag safety issues
 - Amazon Reviews and Metadata for product information such as reviews and rating (https://cseweb.ucsd.edu/~jmcauley/datasets/amazon_v2/)
 - CPSC Recalls and Incident Reports to create labels for products that appear on Amazon that are unsafe and low quality (https://www.saferproducts.gov/PublicSearch)
 
-## Methods, Modelling and Results:
-We trained a variation of classifiers including Logistic Regression, Random Forest and XGBoost. To train the models, we developed a custom train/test split that used a graph and split the data basde on connected components to prevent data leakage in any of our sets. This was a bit challenging because as we continued to split the data, we had even smaller sets with less class 1 observations. We later learned through exploration of feature selection that the feature 'category' was unevenly distributed across the sets which led to ambiguous results. 
+## 📝 Project Summary
 
-We used hyperparameter tuning to adjust the weights to manage the severely imbalanced data. This led us to exploring variations of models that either had balanced weighting or more aggressive weighting. We did the tuning with the models aforementioned and also used Voting and Stacking Classifiers. Trying to minimize false positives and false negatives and maximize macro average recall, we continued to end up in three regimes that involved trade offs of all those metrics. Thus, it is up to the stakeholder and business to determine what they prioritize.
+We worked with two datasets:  
+- **600K+ unlabeled Amazon metadata** (including product reviews and attributes)  
+- **CPSC complaints data** (product recall reports)
 
-Ultimately, we found that our final (Logistic Regression, Random Forest, and Voting Classifier of the three base estimators) generalized well and were not overfitting. The results we saw were consistent and slightly better in average precision score than on our validation sets.
+We used **fuzzy matching** and **ASIN scraping** to match Amazon products with recall data and generate labels. This process yielded a **very small number of positive class (label 1) samples (~1,500)** and a vast number of negative class (label 0) samples, resulting in an **extremely imbalanced dataset**. Additionally, due to the similarity among Amazon products, many-to-many relationships formed between matched products and recalls.
 
-Lastly, we used probability calibration to calibrate the model to predict true likelihoods to perform anomaly detection. When using the Voting Classifer and looking at the 90th percentile, the model is able to detect 4000 anomalies, meaning, true class 0 products with predicted probability of class 1 higher than average. These anomalies are flagged by the model and can be manually reviewed.
+To **prevent data leakage**, especially among similar products, we developed a **custom train/test split** strategy using a **graph-based approach**. We built connected components based on product matches and ensured that no component was split across training, validation, or test sets.
+
+---
+
+## ⚙️ Feature Engineering
+
+We generated a variety of features from both **metadata** and **reviews**:
+
+- **From metadata:**
+  - Product rank
+  - Price
+  - Category
+
+- **From reviews:**
+  - Statistical features (e.g., number of reviews, average rating)
+  - Bot indicators (e.g., repeated reviewers)
+  - Embeddings and similarity scores from review text and summary
+  - Sentiment scores to reduce false positives with positive-sounding reviews
+
+---
+
+## 🧪 Modeling & Imbalance Handling
+
+To reduce class imbalance, we **undersampled** the negative class to 200K samples.  
+We trained several classifiers including:
+
+- Logistic Regression  
+- Random Forest  
+- XGBoost  
+- Voting Classifier (ensemble of the above)
+
+We applied **hyperparameter tuning**, adjusting **class weights** to explore both **balanced** and **aggressively weighted** regimes.
+
+Our goal was to:
+- **Maximize macro average recall**
+- **Minimize false positives and false negatives**
+
+This led us to three modeling regimes with different trade-offs. We leave it to the **stakeholders** to choose a strategy that aligns best with business goals.
+
+---
+
+## 🔍 Feature Impact & Data Splitting Challenges
+
+During feature analysis, we noticed many false positives had negative reviews. When comparing **false positives vs. true negatives**, we found **different category distributions**, which led us to investigate the role of the `'category'` feature.
+
+We experimented with including/excluding the category feature, but results were **inconsistent** between validation and cross-validation. We realized this was due to our **custom component-based data split**, which assigned similar products to the same set — resulting in a **distribution mismatch** of the `'category'` feature between training and validation sets.
+
+Despite these challenges, our models achieved high recall (~**0.8**) and were able to capture most true positives — although at the cost of higher false positives in some configurations.
+
+---
+
+## 📈 Probability Calibration & Anomaly Detection
+
+We applied **probability calibration** to ensure the model's predicted probabilities reflected **true likelihoods**, allowing for **anomaly detection** use cases.
+
+Using the calibrated **Voting Classifier**:
+- At the **90th percentile**, the model flagged ~**4,000 potential anomalies** (i.e., class 0 products with high predicted probability of being class 1)
+- These high-risk products could be **manually reviewed** for further action
+
+---
+
+## ✅ Final Model Evaluation on Test Set
+
+We evaluated our **uncalibrated final models** on the held-out test set and found:
+
+- No overfitting
+- Performance was **stable and slightly improved** compared to validation results
+- Macro recall and average precision remained consistent
+
+### 📊 Test Set Performance Summary
+
+| Model                | Macro Recall | Macro F1  | PR AUC    |
+|----------------------|--------------|-----------|-----------|
+| Voting Classifier    | **0.7820**   | 0.4412    | 0.1150    |
+| Logistic Regression  | 0.7713       | 0.4409    | 0.0974    |
+| XGBoost              | 0.7653       | 0.4388    | 0.0980    |
+| Random Forest        | 0.7599       | 0.4205    | **0.1184** |
+
 
 ## Repository Structure
 
