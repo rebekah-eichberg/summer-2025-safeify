@@ -77,7 +77,7 @@ This led us to three modeling regimes with different trade-offs. We leave it to 
 
 During feature analysis, we noticed many false positives had negative reviews. When comparing **false positives vs. true negatives**, we found **different category distributions**, which led us to investigate the role of the `'category'` feature.
 
-We experimented with including/excluding the category feature, but results were **inconsistent** between validation and cross-validation. We realized this was due to our **custom component-based data split**, which assigned similar products to the same set — resulting in a **distribution mismatch** of the `'category'` feature between training and validation sets.
+We experimented with including/excluding the category feature, but results were **inconsistent** between validation and cross-validation. We realized this was due to our **custom component-based data split**, which assigned similar products to the same set — resulting in a **distribution mismatch** of the `'category'` feature specifically within the positive labeled samples between training and validation sets.
 
 Despite these challenges, our models achieved high recall (~**0.8**) and were able to capture most true positives — although at the cost of higher false positives in some configurations.
 
