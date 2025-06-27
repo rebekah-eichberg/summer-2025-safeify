@@ -1,1 +1,1 @@
-This folder contains trained models before probability calibration.
+This folder contains models trained before probability calibration.
