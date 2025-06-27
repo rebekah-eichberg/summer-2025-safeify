@@ -26,9 +26,9 @@ Safety Impact: Reduction in time to flag safety issues
 
 ## Project Summary
 
-We worked with two datasets:  
-- **600K+ unlabeled Amazon metadata** (including product reviews and attributes)  
-- **CPSC complaints data** (product recall reports)
+Our datasets:  
+- **600K+ unlabeled Amazon metadata** (including product attributes)  
+- **~2500 CPSC complaints data**
 
 We used **fuzzy matching** and **ASIN scraping** to match Amazon products with recall data and generate labels. This process yielded a **very small number of positive class (label 1) samples (~1,500)** and a vast number of negative class (label 0) samples, resulting in an **extremely imbalanced dataset**. Additionally, due to the similarity among Amazon products, many-to-many relationships formed between matched products and recalls.
 
