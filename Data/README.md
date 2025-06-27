@@ -24,7 +24,7 @@ Each notebook has different dependencies. Please install the appropriate require
 # For `ComplaintWordsClusters.ipynb`
 pip install -r requirements_gensim.txt
 
-# For `CleanReviewsData.ipynb`, `EmbeddingCalculationReviewText.ipynb`, `SimilarityScore_ReviewEmbeddingAggregation.ipynb`, `SummaryEmbeddingColumns.ipynb``
+# For `CleanReviewsData.ipynb`, `EmbeddingCalculationReviewText.ipynb`, `SimilarityScore_ReviewEmbeddingAggregation.ipynb`, `SummaryEmbeddingColumns.ipynb`, `negative-complaint-words.ipynb`
 pip install -r requirements_gpu.txt
 ```
 
