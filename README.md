@@ -88,7 +88,7 @@ Despite these challenges, our models achieved high recall (~**0.8**) and were ab
 We applied **probability calibration** to ensure the model's predicted probabilities reflected **true likelihoods**, allowing for **anomaly detection** use cases.
 
 Using the calibrated **Voting Classifier**:
-- At the **90th percentile**, the model flagged ~**4,000 potential anomalies** (i.e., class 0 products with high predicted probability of being class 1)
+- At the **90th percentile**, the model flagged ~**4,000 potential anomalies** (i.e., These are true class 0 products whose predicted probability of being class 1 exceeds the average predicted probability assigned to actual class 1 samples.)
 - These high-risk products could be **manually reviewed** for further action
 
 
