@@ -4,6 +4,11 @@ import os
 from useful_functions import download_if_not_exists,extract_gz_file
 
 
+# Get the absolute path to the directory the script is in
+script_dir = os.path.dirname(os.path.abspath(__file__))
+
+# Then use script_dir to build paths
+data_path = os.chdir(script_dir)
 
 # Download reviews
 URL_REVIEWS="https://mcauleylab.ucsd.edu/public_datasets/data/amazon_v2/categoryFiles/Toys_and_Games.json.gz"

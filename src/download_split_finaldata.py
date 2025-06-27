@@ -1,6 +1,12 @@
 import os
 from useful_functions import download_if_not_exists,verify_md5_file
 
+# Get the absolute path to the directory the script is in
+script_dir = os.path.dirname(os.path.abspath(__file__))
+
+# Then use script_dir to build paths
+data_path = os.chdir(script_dir)
+
 FILENAMES=["../Data/test_v3.parquet",
            "../Data/validationA_v3.parquet",
            "../Data/validationB_v3.parquet",
