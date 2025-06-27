@@ -24,7 +24,7 @@ Safety Impact: Reduction in time to flag safety issues
 - Amazon Reviews and Metadata for product information such as reviews and rating (https://cseweb.ucsd.edu/~jmcauley/datasets/amazon_v2/)
 - CPSC Recalls and Incident Reports to create labels for products that appear on Amazon that are unsafe and low quality (https://www.saferproducts.gov/PublicSearch)
 
-## 📝 Project Summary
+## Project Summary
 
 We worked with two datasets:  
 - **600K+ unlabeled Amazon metadata** (including product reviews and attributes)  
@@ -36,7 +36,7 @@ To **prevent data leakage**, especially among similar products, we developed a *
 
 ---
 
-## ⚙️ Feature Engineering
+## Feature Engineering
 
 We generated a variety of features from both **metadata** and **reviews**:
 
@@ -53,7 +53,7 @@ We generated a variety of features from both **metadata** and **reviews**:
 
 ---
 
-## 🧪 Modeling & Imbalance Handling
+## Modeling & Imbalance Handling
 
 To reduce class imbalance, we **undersampled** the negative class to 200K samples.  
 We trained several classifiers including:
@@ -73,7 +73,7 @@ This led us to three modeling regimes with different trade-offs. We leave it to 
 
 ---
 
-## 🔍 Feature Impact & Data Splitting Challenges
+## Feature Impact & Data Splitting Challenges
 
 During feature analysis, we noticed many false positives had negative reviews. When comparing **false positives vs. true negatives**, we found **different category distributions**, which led us to investigate the role of the `'category'` feature.
 
@@ -83,7 +83,7 @@ Despite these challenges, our models achieved high recall (~**0.8**) and were ab
 
 ---
 
-## 📈 Probability Calibration & Anomaly Detection
+## Probability Calibration & Anomaly Detection
 
 We applied **probability calibration** to ensure the model's predicted probabilities reflected **true likelihoods**, allowing for **anomaly detection** use cases.
 
@@ -93,7 +93,7 @@ Using the calibrated **Voting Classifier**:
 
 ---
 
-## ✅ Final Model Evaluation on Test Set
+## Final Model Evaluation on Test Set
 
 We evaluated our **uncalibrated final models** on the held-out test set and found:
 
@@ -101,7 +101,7 @@ We evaluated our **uncalibrated final models** on the held-out test set and foun
 - Performance was **stable and slightly improved** compared to validation results
 - Macro recall and average precision remained consistent
 
-### 📊 Test Set Performance Summary
+### Test Set Performance Summary
 
 | Model                | Macro Recall | Macro F1  | PR AUC    |
 |----------------------|--------------|-----------|-----------|
