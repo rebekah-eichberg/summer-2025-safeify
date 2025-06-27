@@ -27,10 +27,10 @@ Safety Impact: Reduction in time to flag safety issues
 ## Project Summary
 
 Our datasets:  
-- **600K+ unlabeled Amazon metadata** (including product attributes)  
-- **~2500 CPSC complaints data**
+- **Amazon Metadata: 600,000+ unlabeled Amazon products** (including product attributes)  
+- **CPSC Complaints Data: Approximately 2500 Samples**
 
-We used **fuzzy matching** and **ASIN scraping** to match Amazon products with recall data and generate labels. This process yielded a **very small number of positive class (label 1) samples (~1,500)** and a vast number of negative class (label 0) samples, resulting in an **extremely imbalanced dataset**. Additionally, due to the similarity among Amazon products, many-to-many relationships formed between matched products and recalls.
+We used **fuzzy matching** and **ASIN scraping** to match Amazon products with recall data and generate labels. This process yielded a **small number of positive class (label 1) samples (~1,500)** and a vast number of negative class (label 0) samples, resulting in an **extremely imbalanced dataset**. Additionally, due to the similarity among Amazon products, many-to-many relationships formed between matched products and recalls.
 
 To **prevent data leakage**, especially among similar products, we developed a **custom train/test split** strategy using a **graph-based approach**. We built connected components based on product matches and ensured that no component was split across training, validation, or test sets.
 
@@ -55,7 +55,7 @@ We generated a variety of features from both **metadata** and **reviews**:
 
 ## Modeling & Imbalance Handling
 
-To reduce class imbalance, we **undersampled** the negative class to 200K samples.  
+To reduce class imbalance, we **undersampled** the negative class to 200,000 samples.  
 We trained several classifiers including:
 
 - Logistic Regression  
@@ -72,14 +72,13 @@ Our goal was to:
 This led us to three modeling regimes with different trade-offs. We leave it to the **stakeholders** to choose a strategy that aligns best with business goals.
 
 
-
 ## Feature Impact & Data Splitting Challenges
 
 During feature analysis, we noticed many false positives had negative reviews. When comparing **false positives vs. true negatives**, we found **different category distributions**, which led us to investigate the role of the `'category'` feature.
 
 We experimented with including/excluding the category feature, but results were **inconsistent** between validation and cross-validation. We realized this was due to our **custom component-based data split**, which assigned similar products to the same set — resulting in a **distribution mismatch** of the `'category'` feature specifically within the positive labeled samples between training and validation sets.
 
-Despite these challenges, our models achieved high recall (~**0.8**) and were able to capture most true positives — although at the cost of higher false positives in some configurations.
+Despite these challenges, our models achieved high recall (**~0.8**) and were able to capture most true positives — although at the cost of higher false positives in some configurations.
 
 
 
@@ -99,7 +98,7 @@ We evaluated our **uncalibrated final models** on the held-out test set and foun
 
 - No overfitting
 - Performance was **stable and slightly improved** compared to validation results
-- Macro recall remained consistent and PR-AUC improved a little bit.
+- Macro recall remained consistent and PR-AUC slightly improved
 
 ### Test Set Performance Summary
 
