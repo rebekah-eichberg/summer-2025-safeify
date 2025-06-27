@@ -34,7 +34,7 @@ We used **fuzzy matching** and **ASIN scraping** to match Amazon products with r
 
 To **prevent data leakage**, especially among similar products, we developed a **custom train/test split** strategy using a **graph-based approach**. We built connected components based on product matches and ensured that no component was split across training, validation, or test sets.
 
----
+
 
 ## Feature Engineering
 
@@ -51,7 +51,7 @@ We generated a variety of features from both **metadata** and **reviews**:
   - Embeddings and similarity scores from review text and summary
   - Sentiment scores to reduce false positives with positive-sounding reviews
 
----
+
 
 ## Modeling & Imbalance Handling
 
@@ -71,7 +71,7 @@ Our goal was to:
 
 This led us to three modeling regimes with different trade-offs. We leave it to the **stakeholders** to choose a strategy that aligns best with business goals.
 
----
+
 
 ## Feature Impact & Data Splitting Challenges
 
@@ -81,7 +81,7 @@ We experimented with including/excluding the category feature, but results were 
 
 Despite these challenges, our models achieved high recall (~**0.8**) and were able to capture most true positives — although at the cost of higher false positives in some configurations.
 
----
+
 
 ## Probability Calibration & Anomaly Detection
 
@@ -91,7 +91,7 @@ Using the calibrated **Voting Classifier**:
 - At the **90th percentile**, the model flagged ~**4,000 potential anomalies** (i.e., class 0 products with high predicted probability of being class 1)
 - These high-risk products could be **manually reviewed** for further action
 
----
+
 
 ## Final Model Evaluation on Test Set
 
@@ -99,7 +99,7 @@ We evaluated our **uncalibrated final models** on the held-out test set and foun
 
 - No overfitting
 - Performance was **stable and slightly improved** compared to validation results
-- Macro recall and average precision remained consistent
+- Macro recall remained consistent and PR-AUC improved a little bit.
 
 ### Test Set Performance Summary
 
