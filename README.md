@@ -56,8 +56,8 @@ We generated a variety of features from both **metadata** and **reviews**:
 ## Modeling & Imbalance Handling
 
 To reduce class imbalance, we **undersampled** the negative class to 200,000 samples.  
-We trained several classifiers including:
 
+We trained several classifiers including:
 - Logistic Regression  
 - Random Forest  
 - XGBoost  
@@ -80,8 +80,6 @@ We experimented with including/excluding the category feature, but results were 
 
 Despite these challenges, our models achieved high recall (**~0.8**) and were able to capture most true positives — although at the cost of higher false positives in some configurations.
 
-
-
 ## Probability Calibration & Anomaly Detection
 
 We applied **probability calibration** to ensure the model's predicted probabilities reflected **true likelihoods**, allowing for **anomaly detection** use cases.
@@ -89,7 +87,6 @@ We applied **probability calibration** to ensure the model's predicted probabili
 Using the calibrated **Voting Classifier**:
 - At the **90th percentile**, the model flagged ~**4,000 potential anomalies** (i.e., These are true class 0 products whose predicted probability of being class 1 exceeds the average predicted probability assigned to actual class 1 samples.)
 - These high-risk products could be **manually reviewed** for further action
-
 
 
 ## Final Model Evaluation on Test Set
