@@ -21,10 +21,10 @@ The raw data came for this product came from two sources:
 Each notebook has different dependencies. Please install the appropriate requirements before running:
 
 ```bash
-# For `ComplaintWordsClusters.ipynb`
+# For ComplaintWordsClusters.ipynb
 pip install -r requirements_gensim.txt
 
-# For `CleanReviewsData.ipynb`, `EmbeddingCalculationReviewText.ipynb`, `SimilarityScore_ReviewEmbeddingAggregation.ipynb`, `SummaryEmbeddingColumns.ipynb`, `negative-complaint-words.ipynb`
+# For CleanReviewsData.ipynb, EmbeddingCalculationReviewText.ipynb, SimilarityScore_ReviewEmbeddingAggregation.ipynb, SummaryEmbeddingColumns.ipynb, negative-complaint-words.ipynb
 pip install -r requirements_gpu.txt
 ```
 
