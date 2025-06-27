@@ -21,7 +21,7 @@ Safety Impact: Reduction in time to flag safety issues
 - Retailer: Reduction in inventory holding of low quality and hazardous, decrease in customer support tickets related to flagged products
 
 ## Data Sources:
-- Amazon Reviews and Metadata for product information such as reviews and rating (https://nijianmo.github.io/amazon/)
+- Amazon Reviews and Metadata for product information such as reviews and rating (https://cseweb.ucsd.edu/~jmcauley/datasets/amazon_v2/)
 - CPSC Recalls and Incident Reports to create labels for products that appear on Amazon that are unsafe and low quality (https://www.saferproducts.gov/PublicSearch)
 
 ## Methods, Modelling and Results:
