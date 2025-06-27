@@ -25,6 +25,13 @@ Safety Impact: Reduction in time to flag safety issues
 - CPSC Recalls and Incident Reports to create labels for products that appear on Amazon that are unsafe and low quality (https://www.saferproducts.gov/PublicSearch)
 
 ## Methods, Modelling and Results:
+We trained a variation of classifiers including Logistic Regression, Random Forest and XGBoost. To train the models, we developed a custom train/test split that used a graph and split the data basde on connected components to prevent data leakage in any of our sets. This was a bit challenging because as we continued to split the data, we had even smaller sets with less class 1 observations. We later learned through exploration of feature selection that the feature 'category' was unevenly distributed across the sets which led to ambiguous results. 
+
+We used hyperparameter tuning to adjust the weights to manage the severely imbalanced data. This led us to exploring variations of models that either had balanced weighting or more aggressive weighting. We did the tuning with the models aforementioned and also used Voting and Stacking Classifiers. Trying to minimize false positives and false negatives and maximize macro average recall, we continued to end up in three regimes that involved trade offs of all those metrics. Thus, it is up to the stakeholder and business to determine what they prioritize.
+
+Ultimately, we found that our final (Logistic Regression, Random Forest, and Voting Classifier of the three base estimators) generalized well and were not overfitting. The results we saw were consistent and slightly better in average precision score than on our validation sets.
+
+Lastly, we used probability calibration to calibrate the model to predict true likelihoods to perform anomaly detection. When using the Voting Classifer and looking at the 90th percentile, the model is able to detect 4000 anomalies, meaning, true class 0 products with predicted probability of class 1 higher than average. These anomalies are flagged by the model and can be manually reviewed.
 
 ## Repository Structure
 
