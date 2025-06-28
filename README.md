@@ -21,15 +21,13 @@ Safety Impact: Reduction in time to flag safety issues
 - Retailer: Reduction in inventory holding of low quality and hazardous, decrease in customer support tickets related to flagged products
 
 ## Data Sources:
-- Amazon Reviews and Metadata for product information such as reviews and rating (https://cseweb.ucsd.edu/~jmcauley/datasets/amazon_v2/)
-- CPSC Recalls and Incident Reports to create labels for products that appear on Amazon that are unsafe and low quality (https://www.saferproducts.gov/PublicSearch)
+- Amazon Reviews: 8,000,000+ product reviews with 600,000+ product ASINs (Amazon Unique Identifier) including reviews and ratings (https://cseweb.ucsd.edu/~jmcauley/datasets/amazon_v2/)
+- Amazon Metadata: 600,000+ unlabeled Amazon products including product attributes (https://cseweb.ucsd.edu/~jmcauley/datasets/amazon_v2/)
+- CPSC Recalls and Incident Reports: 2514 samples including product recalls, complaints and incident reports (https://www.saferproducts.gov/PublicSearch)
 
 ## Project Summary
 
-Our datasets:  
-- **Amazon Metadata: 600,000+ unlabeled Amazon products** (including product attributes)  
-- **CPSC Complaints Data: Approximately 2500 Samples**
-
+Matching and Labeling:  
 We used **fuzzy matching** and **ASIN scraping** to match Amazon products with recall data and generate labels. This process yielded a **small number of positive class (label 1) samples (~1,500)** and a vast number of negative class (label 0) samples, resulting in an **extremely imbalanced dataset**. Additionally, due to the similarity among Amazon products, many-to-many relationships formed between matched products and recalls.
 
 To **prevent data leakage**, especially among similar products, we developed a **custom train/test split** strategy using a **graph-based approach**. We built connected components based on product matches and ensured that no component was split across training, validation, or test sets.
@@ -47,7 +45,7 @@ We generated a variety of features from both **metadata** and **reviews**:
 
 - **From reviews:**
   - Statistical features (e.g., number of reviews, average rating)
-  - Bot indicators (e.g., repeated reviewers)
+  - Bot indicators 
   - Embeddings and similarity scores from review text and summary
   - Sentiment scores to reduce false positives with positive-sounding reviews
 
