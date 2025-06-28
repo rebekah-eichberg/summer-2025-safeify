@@ -2,6 +2,18 @@
 
 This directory contains notebooks and scripts for cleaning Amazon product metadata and review data, engineering features, and builds the main datasets for modeling.
 
+## Requirements
+
+Each notebook has different dependencies. Please install the appropriate requirements before running:
+
+```bash
+# For ComplaintWordsClusters.ipynb
+pip install -r requirements_gensim.txt
+
+# For CleanReviewsData.ipynb, EmbeddingCalculationReviewText.ipynb, SimilarityScore_ReviewEmbeddingAggregation.ipynb, SummaryEmbeddingColumns.ipynb, negative-complaint-words.ipynb
+pip install -r requirements_gpu.txt
+```
+
 ## Contents
 
 - **reviews-eda.ipynb**
