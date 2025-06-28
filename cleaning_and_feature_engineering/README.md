@@ -131,12 +131,14 @@ The review text for each review is cleaned. The model `all-MiniLM-L6-v2` is appl
 
 ### Reference Vectors from Complaints Data (`negative-complaint-words.ipynb` and `ComplaintWordsClusters.ipynb`)
 
-We use a set of complaint-related words and representative complaint sentences, derived from CPSC incident reports, as reference vectors for semantic similarity scoring. These reference vectors are used in  to compute the semantic similarity between Amazon review texts and typical complaints, helping to identify safety-related or negative experiences in product reviews.
+We use a set of complaint-related words and representative complaint sentences, derived from CPSC incident reports, as reference vectors for semantic similarity scoring. These vectors help measure how semantically similar Amazon review texts are to typical safety complaints, allowing us to identify safety-related or negative experiences in product reviews.
+
+Initially, when we used raw complaint sentences for similarity scoring, we observed high similarity scores even for non-complaint reviews. This was often due to overlapping toy-related terms, which introduced noise and inflated similarity based on product context rather than actual negative content. To address this, we aggregated all words from the complaints, removed stopwords, and lemmatized the tokens. We then used the LLMs mistral-8x7B and ChatGPT to classify the lemmatized words into two categories: (1) complaint/injury-related and negative, and (2) toy-related and neutral.
+
+We clustered the filtered complaint-related words into 40 semantic groups. From 33 of these clusters, we asked ChatGPT to generate one representative complaint-focused sentence per cluster—explicitly instructing it to avoid toy-specific or neutral language. We then computed the mean embedding vector of these generated sentences to form a refined reference vector representing genuine complaint or injury content, which was used in our similarity scoring pipeline.
 
 ### Similarity and Sentiment Scoring (`SimilarityScore_ReviewEmbeddingAggregation.ipynb`)
-We compute the cosine similarity scores of the review text with the collection of text embeddings of the reference complaint sentences. 
-
-To reduce false positives, we do the following.  We first use a sentiment classifier (`distilbert-base-uncased-finetuned-sst-2-english`) to compute sentiment scores for each review. Then we filter out reviews with high similarity to complaint sentences, but positive sentiment, in order to reduce false positives. We also compute similarity scores with a collection of negative sentences relating to shipping related issues.
+We compute the cosine similarity scores between the review text and a collection of text embeddings from reference complaint sentences. We also compute similarity scores with a collection of negative sentences related to shipping issues. Additionally, we use a sentiment classifier (`distilbert-base-uncased-finetuned-sst-2-english`) to generate sentiment scores for each review. These sentiment scores are used both as separate features and as weights when aggregating the embeddings.
 
 We then aggregate mean and maximum similarity and sentiment scores per ASIN, and compute weighted and mean review embeddings per ASIN, giving more weight to negative reviews.
 
