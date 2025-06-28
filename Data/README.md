@@ -16,18 +16,6 @@ The raw data came for this product came from two sources:
     
     We downloaded the data in May 2025 from [https://www.saferproducts.gov/PublicSearch](https://www.saferproducts.gov/PublicSearch). The files are found in `data/cpsc_data` folder.
 
-## Requirements
-
-Each notebook has different dependencies. Please install the appropriate requirements before running:
-
-```bash
-# For ComplaintWordsClusters.ipynb
-pip install -r requirements_gensim.txt
-
-# For CleanReviewsData.ipynb, EmbeddingCalculationReviewText.ipynb, SimilarityScore_ReviewEmbeddingAggregation.ipynb, SummaryEmbeddingColumns.ipynb, negative-complaint-words.ipynb
-pip install -r requirements_gpu.txt
-```
-
 ## File List & Descriptions
 
 - **amazon_df_labels.csv**
